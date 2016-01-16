@@ -11,7 +11,7 @@
 
     make exynos7420-zerofltetw_defconfig
 
-    make -j7
+    make -j7 2>&1 |tee build.txt
 
 mkbootimg \
       --kernel arch/arm64/boot/Image \
