@@ -3,11 +3,11 @@
 
     export ARCH=arm64
 
-    export PATH=/home/devries/gcc/linux-x86/aarch64/aarch64-linux-android-4.9:$PATH
+    export PATH=/home/devries/aarch64-linux-gnu-5.3:$PATH
 
     export PATH=/home/devries/GitHub/mkbootimg_tools:$PATH
 
-    export CROSS_COMPILE=/home/devries/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/aarch64-linux-android-
+    export CROSS_COMPILE=/home/devries/aarch64-linux-gnu-5.3/bin/aarch64-
 
     make exynos7420-zerofltetw_defconfig
 
