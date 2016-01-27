@@ -1125,11 +1125,12 @@ static void exynos_ufs_post_hibern8(struct ufs_hba *hba, u8 enter)
 	}
 }
 
-static int exynos_ufs_link_startup_notify(struct ufs_hba *hba, bool notify)
+static int exynos_ufs_link_startup_notify(struct ufs_hba *hba,
+	enum ufs_notify_change_status status)
 {
 	int ret = 0;
 
-	switch ((u8)notify) {
+	switch (status) {
 	case PRE_CHANGE:
 		exynos_ufs_dev_hw_reset(hba);
 		ret = exynos_ufs_pre_link(hba);
@@ -1144,13 +1145,14 @@ static int exynos_ufs_link_startup_notify(struct ufs_hba *hba, bool notify)
 	return ret;
 }
 
-static int exynos_ufs_pwr_change_notify(struct ufs_hba *hba, bool notify,
+static int exynos_ufs_pwr_change_notify(struct ufs_hba *hba,
+					enum ufs_notify_change_status status,
 					struct ufs_pa_layer_attr *pwr_max,
 					struct ufs_pa_layer_attr *pwr_req)
 {
 	int ret = 0;
 
-	switch ((u8)notify) {
+	switch (status) {
 	case PRE_CHANGE:
 		ret = exynos_ufs_pre_prep_pmc(hba, pwr_max, pwr_req);
 		break;
@@ -1165,9 +1167,9 @@ static int exynos_ufs_pwr_change_notify(struct ufs_hba *hba, bool notify,
 }
 
 static void exynos_ufs_hibern8_notify(struct ufs_hba *hba,
-				u8 enter, bool notify)
+				u8 enter, enum ufs_notify_change_status status)
 {
-	switch ((u8)notify) {
+	switch (status) {
 	case PRE_CHANGE:
 		exynos_ufs_pre_hibern8(hba, enter);
 		break;
