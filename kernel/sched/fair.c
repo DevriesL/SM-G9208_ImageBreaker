@@ -3779,7 +3779,7 @@ unsigned int hmp_next_down_threshold = 4096;
 
 #ifdef CONFIG_SCHED_HMP_LITTLE_PACKING
 unsigned int hmp_packing_enabled = 1;
-unsigned int hmp_full_threshold = 570;
+unsigned int hmp_full_threshold = 82;
 #endif
 
 static inline int hmp_boost(void)
