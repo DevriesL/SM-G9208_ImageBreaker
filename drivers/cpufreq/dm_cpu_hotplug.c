@@ -32,7 +32,7 @@
 #else
 #define NORMALMIN_FREQ	500000
 #endif
-#define POLLING_MSEC	200
+#define POLLING_MSEC	150
 #define DEFAULT_LOW_STAY_THRSHD	0
 
 struct cpu_load_info {
