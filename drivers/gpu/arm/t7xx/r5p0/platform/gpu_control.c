@@ -26,6 +26,9 @@
 
 static struct gpu_control_ops *ctr_ops;
 
+unsigned int gpu_min_override = 266;
+unsigned int gpu_max_override = 700;
+
 #ifdef CONFIG_MALI_RT_PM
 static struct exynos_pm_domain *gpu_get_pm_domain(void)
 {
@@ -121,7 +124,13 @@ int gpu_control_set_clock(struct kbase_device *kbdev, int clock)
 		GPU_LOG(DVFS_ERROR, DUMMY, 0u, 0u, "%s: mismatch clock error (%d)\n", __func__, clock);
 		return -1;
 	}
-
+	if (clock) {
+		if (clock < gpu_min_override)
+			clock = gpu_min_override;
+		else if (clock > gpu_max_override)
+			clock = gpu_max_override;
+	}
+			
 	is_up = prev_clock < clock;
 
 	if (is_up)
